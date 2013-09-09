@@ -7,12 +7,12 @@ from collections import namedtuple
 
 from mongoengine import (
         connect, Document, IntField, StringField, 
-        GeoPointField)
+        PointField)
 
 
 class ZipGeo(Document):
     zip_code = IntField(required=True, unique=True)
-    latlon = GeoPointField(required=True)
+    lonlat = PointField(required=True)
     location = StringField(required=True)
     state = StringField(required=True)
     timezone = IntField()
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     for row in generate_zip_rows():
         try:
             ZipGeo(
-            zip_code=int(row.zip_code), latlon=[float(row.lat), float(row.lon)],
+            zip_code=int(row.zip_code), lonlat=[float(row.lon), float(row.lat)],
             location=row.location, state=row.state, timezone=int(row.tz),
             dst=int(row.dst)).save()
         except ValueError:
