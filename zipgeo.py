@@ -64,8 +64,8 @@ if __name__ == '__main__':
     for row in generate_zip_rows():
         try:
             ZipGeo(
-            zip_code=int(row.zip_code), lonlat=[float(row.lon), float(row.lat)],
-            location=row.location, state=row.state, timezone=int(row.tz),
-            dst=int(row.dst)).save()
+                zip_code=int(row.zip_code), lonlat=[float(row.lon), float(row.lat)],
+                location=row.location, state=row.state, timezone=int(row.tz),
+                dst=int(row.dst)).save()
         except ValueError:
             pass
